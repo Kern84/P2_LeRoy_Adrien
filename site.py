@@ -1,8 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-
+"""
 links =[]
+
 
 for i in range(1, 51):
     url = "http://books.toscrape.com/catalogue/page-" + str(i) + ".html"
@@ -16,14 +17,14 @@ for i in range(1, 51):
         for h3 in h3s:
             a = h3.find("a")
             link = a["href"]
-            links.append("http://books.toscrape.com/" + link)
+            links.append("http://books.toscrape.com/catalogue/" + link)
 
 print(links)
 
 with open("urls.txt", "w")as file:
     for link in links:
         file.write(link + "\n")
-
+"""
 with open("urls.txt", "r") as inf:
     with open("tableau.csv", "w") as outf:
         outf.write("product_page_url, universal_product_code, title, price_including_tax, price_excluding_tax, number_available, product_description, category, review_rating, image_url")
@@ -32,15 +33,23 @@ with open("urls.txt", "r") as inf:
             response = requests.get(url)
             if response.ok:
                 soup = BeautifulSoup(response.content, "html.parser")
-#                product =
-                upc = soup.find("th", "UPC").find("td")
-                title = soup.find("div", {"class" : "col-sm-6 product_main"}).find("h1")
- #               priceinctax =
- #               princeexctax =
-#                numberav =
- #               description =
- #               category =
- #               review =
- #               image =
-                print("UPC" + upc.text + "title" + title.text)
-                outf.write(upc.text, + "," + title.text + "\n")
+                product = row.strip()
+                upc = soup.find("table", {"class" : "table table-striped"}).find_all("td") [0]
+                title = soup.find("div", {"class" : "col-sm-6 product_main"}).find_all("h1")
+                priceinctax = soup.find("table", {"class" : "table table-striped"}).find_all("td") [3]
+                priceexctax = soup.find("table", {"class" : "table table-striped"}).find_all("td") [2]
+                numberav = soup.find("table", {"class" : "table table-striped"}).find_all("td") [5]
+                description = soup.find("article", {"class" : "product_page"}).find_all("p") [3]
+                category = soup.find("ul", {"class" : "breadcrumb"}).find_all("a") [2]
+                review = soup.find("div", {"class" : "col-sm-6 product_main"}).find("p", {"class" : "star-rating"})
+                image = soup.find("div", {"class" : "content"}).find("div", {"class" : "item active"}).find("img")
+    #            print("UPC" + upc + "title" + title)
+                outf.write('product + "," + upc.text + "," + title + "," + priceinctax.text + "," + priceexctax.text + "," + numberav.text + "," + description.text + "," + category.text + "," + "http://books.toscrape.com/" + image["src"]')
+  #              print(product, upc.text, title, priceinctax.text, priceexctax.text, numberav.text, description.text, category.text, "http://books.toscrape.com/" + image["src"])
+ #               print("http://books.toscrape.com/" + image["src"])
+  #              print(review)
+
+
+
+
+
