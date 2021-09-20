@@ -27,7 +27,8 @@ with open("urls.txt", "w")as file:
 """
 with open("urls.txt", "r") as inf:
     with open("tableau.csv", "w") as outf:
-        outf.write("product_page_url, universal_product_code, title, price_including_tax, price_excluding_tax, number_available, product_description, category, review_rating, image_url")
+        writer = csv.writer(outf)
+        writer.writerow("product_page_url, universal_product_code, title, price_including_tax, price_excluding_tax, number_available, product_description, category, review_rating, image_url")
         for row in inf:
             url = row.strip()
             response = requests.get(url)
@@ -43,9 +44,8 @@ with open("urls.txt", "r") as inf:
                 category = soup.find("ul", {"class" : "breadcrumb"}).find_all("a") [2]
                 review = soup.find("div", {"class" : "col-sm-6 product_main"}).find("p", {"class" : "star-rating"})
                 image = soup.find("div", {"class" : "content"}).find("div", {"class" : "item active"}).find("img")
-    #            print("UPC" + upc + "title" + title)
-                outf.write('product + "," + upc.text + "," + title + "," + priceinctax.text + "," + priceexctax.text + "," + numberav.text + "," + description.text + "," + category.text + "," + "http://books.toscrape.com/" + image["src"]')
-  #              print(product, upc.text, title, priceinctax.text, priceexctax.text, numberav.text, description.text, category.text, "http://books.toscrape.com/" + image["src"])
+                writer.writerow('product + "," + upc.text + "," + title + "," + priceinctax.text + "," + priceexctax.text + "," + numberav.text + "," + description.text + "," + category.text + "," + "http://books.toscrape.com/" + image["src"]')
+                print(product, upc.text, title, priceinctax.text, priceexctax.text, numberav.text, description.text, category.text, "http://books.toscrape.com/" + image["src"])
  #               print("http://books.toscrape.com/" + image["src"])
   #              print(review)
 
