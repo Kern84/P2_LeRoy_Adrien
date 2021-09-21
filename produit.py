@@ -5,61 +5,33 @@ from bs4 import BeautifulSoup
 import csv
 
 url = "http://books.toscrape.com/catalogue/meditations_33/index.html"
-page = requests.get(url)
-soup = BeautifulSoup(page.content, "html.parser")
-
-nom = []
-valeur = []
-
-
-
-titre = soup.find_all("li", "active")
-for titres in titre:
-    valeur.append(titres.string)
-
-nom.append("title")
-"""
-description = soup.find_all("meta", "content")
-for descriptions in description:
-    valeur.append(descriptions.string)
-"""
-description = soup.find_all("div")
-for art in description:
-    p = art.find("p")
-    valeur.append(p.string)
-
-
-nom.append("description")
-
-category = soup.find_all("a", href="../category/books/philosophy_7/index.html")
-for categories in category:
-    valeur.append(categories.string)
-
-nom.append("category")
-
-noms = soup.find_all("th")
-for resultat in noms:
-    nom.append(resultat.string)
-
-valeurs = soup.find_all("td")
-for reponse in valeurs:
-    valeur.append(reponse.string)
-
-image = soup.find_all("img", "src")
-for images in image:
-    valeur.append(images)
-
-nom.append("image")
-
-nom.remove("Product Type")
-nom.remove("Tax")
-valeur.remove("Books")
-valeur.remove("£0.00")
-
-print(nom)
-print(valeur)
-
-with open("test.csv", "w") as f:
-    writer = csv.writer(f, delimiter = ",")
-    writer.writerow(nom)
-    writer.writerow(valeur)
+response = requests.get(url)
+if response.ok:
+    soup = BeautifulSoup(response.content, "html.parser")
+en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax", "number_available", "product_description", "category", "review_rating", "image_url"]
+with open("produit.csv", "w") as outf:
+    writer = csv.writer(outf, delimiter=",")
+    writer.writerow(en_tete)
+    infos = []
+    product = url
+    infos.append(product)
+    upc = soup.find("table", {"class" : "table table-striped"}).find_all("td") [0]
+    infos.append(upc.string)
+    title = soup.find("div", {"class" : "col-sm-6 product_main"}).find("h1").text
+    infos.append(title)
+    priceinctax = soup.find("table", {"class" : "table table-striped"}).find_all("td") [3]
+    infos.append(priceinctax.text)
+    priceexctax = soup.find("table", {"class" : "table table-striped"}).find_all("td") [2]
+    infos.append(priceexctax.text)
+    numberav = soup.find("table", {"class" : "table table-striped"}).find_all("td") [5]
+    infos.append(numberav.text)
+    description = soup.find("article", {"class" : "product_page"}).find_all("p") [3]
+    infos.append(description.text)
+    category = soup.find("ul", {"class" : "breadcrumb"}).find_all("a") [2]
+    infos.append(category.text)
+    review = soup.find("p", {"class" : "star-rating"}).attrs
+    infos.append(review["class"][1])
+    image = soup.find("div", {"class" : "content"}).find("div", {"class" : "item active"}).find("img")
+    image = "http://books.toscrape.com/" + image["src"]
+    infos.append(image)
+    writer.writerow(infos)

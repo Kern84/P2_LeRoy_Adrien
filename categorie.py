@@ -1,3 +1,5 @@
+# Scripte Python pour la récupération des informations pour une catégorie
+
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -16,13 +18,13 @@ if response.ok:
         link = link.replace("../", "")
         links.append("http://books.toscrape.com/catalogue/" + link)
 
-with open("urls2.txt", "w")as file:
+with open("urls_categorie.txt", "w")as file:
     for link in links:
         file.write(link + "\n")
 
 en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax", "number_available", "product_description", "category", "review_rating", "image_url"]
-with open("urls2.txt", "r") as inf:
-    with open("tableau2.csv", "w") as outf:
+with open("urls_categorie.txt", "r") as inf:
+    with open("categorie.csv", "w") as outf:
         writer = csv.writer(outf, delimiter=",")
         writer.writerow(en_tete)
         for row in inf:
