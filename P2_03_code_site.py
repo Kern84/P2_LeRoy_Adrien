@@ -50,7 +50,7 @@ for x in range(51):
         en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                    "number_available", "product_description", "category", "review_rating", "image_url"]
         with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-            with open(str(categories1[x]) + ".csv", "w") as outf:
+            with open("P2_03_" + str(categories1[x]) + ".csv", "w") as outf:
                 writer = csv.writer(outf, delimiter=",")
                 writer.writerow(en_tete)
                 for row in inf:
@@ -96,6 +96,7 @@ for x in range(51):
                         image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find("img")
                         linkImg = image["src"]
                         nom = image["alt"]
+                        nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                         image1 = "http://books.toscrape.com/" + linkImg
                         images = []
                         images.append(image1)
@@ -129,7 +130,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -176,6 +177,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
@@ -209,7 +211,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -256,6 +258,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
@@ -289,7 +292,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -336,6 +339,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
@@ -369,7 +373,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -416,6 +420,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
@@ -431,8 +436,8 @@ for x in range(51):
     if int(resultat) > 100 and int(resultat) <= 120:
         for y in range(1,7):
             categorie1 = categorie1.replace("index.html", "")
-            categorie2 = categorie2 + "page-" + str(y) + ".html"
-            resp = requests.get(categorie1)
+            categorie2 = categorie1 + "page-" + str(y) + ".html"
+            resp = requests.get(categorie2)
             soup = BeautifulSoup(resp.content, "html.parser")
             links2 = []
             h3s = soup.find_all("h3")
@@ -449,7 +454,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -496,6 +501,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
@@ -529,7 +535,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -576,6 +582,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
@@ -609,7 +616,7 @@ for x in range(51):
             en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                        "number_available", "product_description", "category", "review_rating", "image_url"]
             with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-                with open(str(categories1[x]) + ".csv", "a+") as outf:
+                with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                     writer = csv.writer(outf, delimiter=",")
                     writer.writerow(en_tete)
                     for row in inf:
@@ -656,6 +663,7 @@ for x in range(51):
                                 "img")
                             linkImg = image["src"]
                             nom = image["alt"]
+                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)

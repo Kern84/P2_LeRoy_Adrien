@@ -24,7 +24,7 @@ with open("urls_categorie.txt", "w")as file:
 
 en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax", "number_available", "product_description", "category", "review_rating", "image_url"]
 with open("urls_categorie.txt", "r") as inf:
-    with open("categorie.csv", "w") as outf:
+    with open("P2_02_categorie.csv", "w") as outf:
         writer = csv.writer(outf, delimiter=",")
         writer.writerow(en_tete)
         for row in inf:

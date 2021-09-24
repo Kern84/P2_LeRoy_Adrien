@@ -9,7 +9,7 @@ response = requests.get(url)
 if response.ok:
     soup = BeautifulSoup(response.content, "html.parser")
 en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax", "number_available", "product_description", "category", "review_rating", "image_url"]
-with open("produit.csv", "w") as outf:
+with open("P2_01_produit.csv", "w") as outf:
     writer = csv.writer(outf, delimiter=",")
     writer.writerow(en_tete)
     infos = []
