@@ -1,10 +1,10 @@
-# Scripte Python pour la récupération des informations pour tout le site par catégorie
+# Script Python pour la récupération des informations pour tout le site par catégorie
 
 import requests
 from bs4 import BeautifulSoup
 import csv
 
-links =[]
+links = []
 categories1 = []
 
 url = "http://books.toscrape.com/catalogue/category/books_1/index.html"
@@ -27,7 +27,6 @@ with open("urls_site.txt", "w")as file:
     for link in links:
         file.write(link + "\n")
 
-x = 0
 for x in range(51):
     categorie1 = links[x]
     resp = requests.get(categorie1)
@@ -50,7 +49,7 @@ for x in range(51):
         en_tete = ["product_page_url", "universal_product_code", "title", "price_including_tax", "price_excluding_tax",
                    "number_available", "product_description", "category", "review_rating", "image_url"]
         with open("urls_site_categorie" + str(x) + ".txt", "r") as inf:
-            with open("P2_03_" + str(categories1[x]) + ".csv", "w") as outf:
+            with open("P2_03_" + str(categories1[x]) + ".csv", "a+") as outf:
                 writer = csv.writer(outf, delimiter=",")
                 writer.writerow(en_tete)
                 for row in inf:
@@ -95,19 +94,19 @@ for x in range(51):
                             reviews.append(review["class"][1])
                         image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find("img")
                         linkImg = image["src"]
-                        nom = image["alt"]
-                        nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                        linkImg2 = linkImg.replace("../", "").replace("/", "")
                         image1 = "http://books.toscrape.com/" + linkImg
                         images = []
                         images.append(image1)
-                        with open(str(nom) + ".jpg", "wb") as img:
-                            im = requests.get("http://books.toscrape.com/" + str(image))
+                        with open(str(linkImg2) + ".jpg", "wb") as img:
+                            im = requests.get(str(image1))
                             img.write(im.content)
                         for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                               priceht, pricetc, numbers,
                                                                                               descriptions, categories,
                                                                                               reviews, images):
                             writer.writerow([prod, item, tit, price, pricetax, num, desc, cat, rev, img])
+
 
     if int(resultat) > 20 and int(resultat) <= 40:
         for y in range(1,3):
@@ -176,13 +175,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
@@ -257,13 +255,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
@@ -338,13 +335,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
@@ -419,13 +415,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
@@ -500,13 +495,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
@@ -581,13 +575,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
@@ -662,13 +655,12 @@ for x in range(51):
                             image = soup.find("div", {"class": "content"}).find("div", {"class": "item active"}).find(
                                 "img")
                             linkImg = image["src"]
-                            nom = image["alt"]
-                            nom = nom.replace("/", "").replace(":", "").replace("(", "").replace(")", "")
+                            linkImg2 = linkImg.replace("../", "").replace("/", "")
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(nom) + ".jpg", "wb") as img:
-                                im = requests.get("http://books.toscrape.com/" + str(image))
+                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                                im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
                                                                                                   priceht, pricetc, numbers,
