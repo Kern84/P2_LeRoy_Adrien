@@ -10,8 +10,7 @@ Entrer la ligne de commande : deactivate ; pour désactiver l'environnement virt
 
 Pour exécuter le code d'application.
 
-Dans le dossier du Projet 2 (P2), repérer les fichiers.py qui contiennent le code Python.
-Sélectionner les fichiers dans l'ordre : P2_01..., puis P2_02..., puis P2_03...
-En double cliquant sur le fichier, le code apparaitra dans le logiciel IDLE de Python.
-Dans la barre de menu, vous trouverez l'onglet "Run", qui va exécuter le code contenu dans le fichier.
-Les documents créés seront disponibles dans le dossier du projet.
+Dans le terminal, après avoir configuré l'environnement virtuel, se placer dans le répertoire contenant les fichiers ".py" du projet. 
+Entrer la ligne de commande "ls" afin de voir la liste des fichiers.
+Entrer la ligne de commande "Python nom_du_fichier.py" pour exécuter le script.
+Le fichier .csv généré se trouvera dans le même dossier, vous pouvez entrer de nouveau la ligne de commande "ls" afin de le voir.
