@@ -98,7 +98,7 @@ for x in range(51):
                         image1 = "http://books.toscrape.com/" + linkImg
                         images = []
                         images.append(image1)
-                        with open(str(linkImg2) + ".jpg", "wb") as img:
+                        with open(str(linkImg2), "wb") as img:
                             im = requests.get(str(image1))
                             img.write(im.content)
                         for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -179,7 +179,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -259,7 +259,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -339,7 +339,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -419,7 +419,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -499,7 +499,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -579,7 +579,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
@@ -659,7 +659,7 @@ for x in range(51):
                             image1 = "http://books.toscrape.com/" + linkImg
                             images = []
                             images.append(image1)
-                            with open(str(linkImg2) + ".jpg", "wb") as img:
+                            with open(str(linkImg2), "wb") as img:
                                 im = requests.get(str(image1))
                                 img.write(im.content)
                             for prod, item, tit, price, pricetax, num, desc, cat, rev, img in zip(products, upcs, titles,
